@@ -74,9 +74,7 @@ function Index() {
             </Link>
           </Button>
           <Button asChild size="lg" variant="ghost">
-            <Link to="/auth" search={{ redirect: "/painel" }}>
-              Já tenho conta
-            </Link>
+            <Link to="/auth">Já tenho conta</Link>
           </Button>
         </div>
 
