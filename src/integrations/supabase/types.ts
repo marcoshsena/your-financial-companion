@@ -14,7 +14,315 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      accounts: {
+        Row: {
+          balance: number
+          connection_id: string | null
+          created_at: string
+          currency: string
+          external_id: string | null
+          id: string
+          institution: string | null
+          name: string
+          type: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          balance?: number
+          connection_id?: string | null
+          created_at?: string
+          currency?: string
+          external_id?: string | null
+          id?: string
+          institution?: string | null
+          name: string
+          type?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          balance?: number
+          connection_id?: string | null
+          created_at?: string
+          currency?: string
+          external_id?: string | null
+          id?: string
+          institution?: string | null
+          name?: string
+          type?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "accounts_connection_id_fkey"
+            columns: ["connection_id"]
+            isOneToOne: false
+            referencedRelation: "bank_connections"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      bank_connections: {
+        Row: {
+          created_at: string
+          id: string
+          institution: string | null
+          item_id: string
+          last_synced_at: string | null
+          provider: string
+          status: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          institution?: string | null
+          item_id: string
+          last_synced_at?: string | null
+          provider?: string
+          status?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          institution?: string | null
+          item_id?: string
+          last_synced_at?: string | null
+          provider?: string
+          status?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      categories: {
+        Row: {
+          color: string
+          created_at: string
+          id: string
+          kind: Database["public"]["Enums"]["tx_kind"]
+          name: string
+          user_id: string
+        }
+        Insert: {
+          color?: string
+          created_at?: string
+          id?: string
+          kind: Database["public"]["Enums"]["tx_kind"]
+          name: string
+          user_id: string
+        }
+        Update: {
+          color?: string
+          created_at?: string
+          id?: string
+          kind?: Database["public"]["Enums"]["tx_kind"]
+          name?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      dividends: {
+        Row: {
+          amount: number
+          created_at: string
+          id: string
+          investment_id: string
+          kind: string
+          paid_on: string
+          user_id: string
+        }
+        Insert: {
+          amount: number
+          created_at?: string
+          id?: string
+          investment_id: string
+          kind?: string
+          paid_on?: string
+          user_id: string
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          id?: string
+          investment_id?: string
+          kind?: string
+          paid_on?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "dividends_investment_id_fkey"
+            columns: ["investment_id"]
+            isOneToOne: false
+            referencedRelation: "investments"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      investments: {
+        Row: {
+          asset_class: Database["public"]["Enums"]["asset_class"]
+          created_at: string
+          currency: string
+          id: string
+          name: string | null
+          symbol: string
+          user_id: string
+        }
+        Insert: {
+          asset_class?: Database["public"]["Enums"]["asset_class"]
+          created_at?: string
+          currency?: string
+          id?: string
+          name?: string | null
+          symbol: string
+          user_id: string
+        }
+        Update: {
+          asset_class?: Database["public"]["Enums"]["asset_class"]
+          created_at?: string
+          currency?: string
+          id?: string
+          name?: string | null
+          symbol?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          full_name: string | null
+          id: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          full_name?: string | null
+          id: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          full_name?: string | null
+          id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      trades: {
+        Row: {
+          created_at: string
+          fees: number
+          id: string
+          investment_id: string
+          notes: string | null
+          price: number
+          quantity: number
+          side: Database["public"]["Enums"]["trade_side"]
+          traded_on: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          fees?: number
+          id?: string
+          investment_id: string
+          notes?: string | null
+          price: number
+          quantity: number
+          side?: Database["public"]["Enums"]["trade_side"]
+          traded_on?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          fees?: number
+          id?: string
+          investment_id?: string
+          notes?: string | null
+          price?: number
+          quantity?: number
+          side?: Database["public"]["Enums"]["trade_side"]
+          traded_on?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "trades_investment_id_fkey"
+            columns: ["investment_id"]
+            isOneToOne: false
+            referencedRelation: "investments"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      transactions: {
+        Row: {
+          account_id: string | null
+          amount: number
+          category_id: string | null
+          created_at: string
+          description: string
+          external_id: string | null
+          id: string
+          kind: Database["public"]["Enums"]["tx_kind"]
+          notes: string | null
+          occurred_on: string
+          source: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          account_id?: string | null
+          amount: number
+          category_id?: string | null
+          created_at?: string
+          description: string
+          external_id?: string | null
+          id?: string
+          kind: Database["public"]["Enums"]["tx_kind"]
+          notes?: string | null
+          occurred_on?: string
+          source?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          account_id?: string | null
+          amount?: number
+          category_id?: string | null
+          created_at?: string
+          description?: string
+          external_id?: string | null
+          id?: string
+          kind?: Database["public"]["Enums"]["tx_kind"]
+          notes?: string | null
+          occurred_on?: string
+          source?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "transactions_account_id_fkey"
+            columns: ["account_id"]
+            isOneToOne: false
+            referencedRelation: "accounts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "transactions_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +331,16 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      asset_class:
+        | "acao"
+        | "fii"
+        | "etf"
+        | "cripto"
+        | "renda_fixa"
+        | "bdr"
+        | "outro"
+      trade_side: "compra" | "venda"
+      tx_kind: "receita" | "despesa"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +467,18 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      asset_class: [
+        "acao",
+        "fii",
+        "etf",
+        "cripto",
+        "renda_fixa",
+        "bdr",
+        "outro",
+      ],
+      trade_side: ["compra", "venda"],
+      tx_kind: ["receita", "despesa"],
+    },
   },
 } as const
