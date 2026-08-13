@@ -2,10 +2,12 @@ import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
+import { lovable } from "@/integrations/lovable/index";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+
 
 export const Route = createFileRoute("/auth")({
   head: () => ({
@@ -76,15 +78,22 @@ function AuthPage() {
 
   const signInWithGoogle = async () => {
     setLoading(true);
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: { redirectTo: window.location.origin },
+    const result = await lovable.auth.signInWithOAuth("google", {
+      redirect_uri: window.location.origin,
     });
-    if (error) {
+    if (result.error) {
       setLoading(false);
       toast.error("Não foi possível entrar com o Google.");
+      return;
     }
+    if (result.redirected) {
+      // Browser will redirect to Google - just return and let it happen
+      return;
+    }
+    // Tokens received and session set - user is authenticated
+    void navigate({ to: "/painel" });
   };
+
 
   return (
     <main className="flex min-h-screen items-center justify-center bg-background px-6 py-12">
