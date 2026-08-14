@@ -1,24 +1,54 @@
-# Your Financial Companion
+# 💰 Patrimônio — Personal Finance & Investment Platform
 
-Bom dia, conectei as minhas contas bancárias ao meu pluggy, para poder acompanhar todos gastos, investimentos, receitas e despesas. Quero fazer um controle financeiro em tempo real e automático. Então, quero que crie uma plataforma de gestão financeira onde eu possa lança, categorizar, editar as descrições das minhas entrar e saída, receitas e despesas, e que também tenha a opção de conectar a um open finance para serem alimentadas automaticamente como pelo meu pluggy. Também esteja incluído: acompanhar minha carteira de investimento, com cotações, tamanho das posições, preço médio de compras, data de compra e venda, rendimentos, dividendos, tudo em tempo real
+> Uma plataforma de gestão financeira pessoal criada para centralizar receitas, despesas, contas bancárias, Open Finance e investimentos em um único ambiente.
 
-This project was built with [Lovable](https://lovable.dev).
+![Status](https://img.shields.io/badge/status-em%20desenvolvimento-orange)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript&logoColor=white)
+![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-7-646CFF?logo=vite&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-Backend-3ECF8E?logo=supabase&logoColor=white)
+![Lovable](https://img.shields.io/badge/Built%20with-Lovable-FF5A5F)
 
-## Build with Lovable
+---
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/361ea24b-e4b3-422f-9568-b34288f3bce3).
+## 📌 Sobre o projeto
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+**Patrimônio** é uma aplicação web de gestão financeira pessoal desenvolvida para oferecer uma visão centralizada da vida financeira do usuário.
 
-## Development
+A proposta é reunir em um único painel:
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+- 💵 Receitas e despesas
+- 🧾 Lançamentos financeiros
+- 🏦 Contas bancárias
+- 🔄 Open Finance
+- 📊 Indicadores financeiros
+- 📈 Carteira de investimentos
+- 💰 Dividendos e proventos
+- 📉 Evolução patrimonial
 
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
-```
+O projeto nasceu de uma necessidade prática: acompanhar diferentes fontes financeiras sem depender de controles espalhados em planilhas, aplicativos e plataformas diferentes.
+
+A ideia é evoluir o sistema de um simples controle financeiro para uma **plataforma integrada de acompanhamento patrimonial**, com dados atualizados automaticamente sempre que possível.
+
+---
+
+## 🎯 Objetivo
+
+O objetivo principal é construir uma aplicação capaz de responder, de forma simples:
+
+> **"Como está minha vida financeira agora?"**
+
+Para isso, o sistema deverá consolidar informações como:
+
+```text
+Contas bancárias
+       ↓
+Open Finance / Pluggy
+       ↓
+Transações
+       ↓
+Categorização
+       ↓
+Dashboard financeiro
+       ↓
+Patrimônio + Investimentos
