@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as LancamentosRouteImport } from './routes/lancamentos'
 import { Route as PainelRouteImport } from './routes/painel'
 import { Route as AuthCallbackRouteImport } from './routes/auth_.callback'
 
@@ -22,6 +23,11 @@ const IndexRoute = IndexRouteImport.update({
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
   path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LancamentosRoute = LancamentosRouteImport.update({
+  id: '/lancamentos',
+  path: '/lancamentos',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PainelRoute = PainelRouteImport.update({
@@ -38,12 +44,14 @@ const AuthCallbackRoute = AuthCallbackRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/lancamentos': typeof LancamentosRoute
   '/painel': typeof PainelRoute
   '/auth/callback': typeof AuthCallbackRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/lancamentos': typeof LancamentosRoute
   '/painel': typeof PainelRoute
   '/auth/callback': typeof AuthCallbackRoute
 }
@@ -51,20 +59,23 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/lancamentos': typeof LancamentosRoute
   '/painel': typeof PainelRoute
   '/auth_/callback': typeof AuthCallbackRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/painel' | '/auth/callback'
+  fullPaths: '/' | '/auth' | '/lancamentos' | '/painel' | '/auth/callback'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/painel' | '/auth/callback'
-  id: '__root__' | '/' | '/auth' | '/painel' | '/auth_/callback'
+  to: '/' | '/auth' | '/lancamentos' | '/painel' | '/auth/callback'
+  id:
+    '__root__' | '/' | '/auth' | '/lancamentos' | '/painel' | '/auth_/callback'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthRoute: typeof AuthRoute
+  LancamentosRoute: typeof LancamentosRoute
   PainelRoute: typeof PainelRoute
   AuthCallbackRoute: typeof AuthCallbackRoute
 }
@@ -83,6 +94,13 @@ declare module '@tanstack/react-router' {
       path: '/auth'
       fullPath: '/auth'
       preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lancamentos': {
+      id: '/lancamentos'
+      path: '/lancamentos'
+      fullPath: '/lancamentos'
+      preLoaderRoute: typeof LancamentosRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/painel': {
@@ -105,6 +123,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthRoute: AuthRoute,
+  LancamentosRoute: LancamentosRoute,
   PainelRoute: PainelRoute,
   AuthCallbackRoute: AuthCallbackRoute,
 }
