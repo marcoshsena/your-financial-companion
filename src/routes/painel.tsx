@@ -187,8 +187,8 @@ function PainelPage() {
                   <CartesianGrid strokeDasharray="3 3" vertical={false} opacity={0.3} />
                   <XAxis dataKey="mes" tickLine={false} axisLine={false} fontSize={12} />
                   <Tooltip formatter={(v: number) => brl(Number(v))} />
-                  <Bar dataKey="receitas" fill="var(--color-accent)" radius={[4, 4, 0, 0]} />
-                  <Bar dataKey="despesas" fill="var(--color-destructive)" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="receitas" fill="var(--color-positive)" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="despesas" fill="var(--color-negative)" radius={[4, 4, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
