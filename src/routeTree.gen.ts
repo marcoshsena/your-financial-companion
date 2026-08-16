@@ -12,6 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as CategoriasRouteImport } from './routes/categorias'
+import { Route as ConexoesRouteImport } from './routes/conexoes'
+import { Route as ConfiguracoesRouteImport } from './routes/configuracoes'
 import { Route as ContasRouteImport } from './routes/contas'
 import { Route as InvestimentosRouteImport } from './routes/investimentos'
 import { Route as LancamentosRouteImport } from './routes/lancamentos'
@@ -31,6 +33,16 @@ const AuthRoute = AuthRouteImport.update({
 const CategoriasRoute = CategoriasRouteImport.update({
   id: '/categorias',
   path: '/categorias',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConexoesRoute = ConexoesRouteImport.update({
+  id: '/conexoes',
+  path: '/conexoes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConfiguracoesRoute = ConfiguracoesRouteImport.update({
+  id: '/configuracoes',
+  path: '/configuracoes',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContasRoute = ContasRouteImport.update({
@@ -63,6 +75,8 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/categorias': typeof CategoriasRoute
+  '/conexoes': typeof ConexoesRoute
+  '/configuracoes': typeof ConfiguracoesRoute
   '/contas': typeof ContasRoute
   '/investimentos': typeof InvestimentosRoute
   '/lancamentos': typeof LancamentosRoute
@@ -73,6 +87,8 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/categorias': typeof CategoriasRoute
+  '/conexoes': typeof ConexoesRoute
+  '/configuracoes': typeof ConfiguracoesRoute
   '/contas': typeof ContasRoute
   '/investimentos': typeof InvestimentosRoute
   '/lancamentos': typeof LancamentosRoute
@@ -84,6 +100,8 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/categorias': typeof CategoriasRoute
+  '/conexoes': typeof ConexoesRoute
+  '/configuracoes': typeof ConfiguracoesRoute
   '/contas': typeof ContasRoute
   '/investimentos': typeof InvestimentosRoute
   '/lancamentos': typeof LancamentosRoute
@@ -96,6 +114,8 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/categorias'
+    | '/conexoes'
+    | '/configuracoes'
     | '/contas'
     | '/investimentos'
     | '/lancamentos'
@@ -106,6 +126,8 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/categorias'
+    | '/conexoes'
+    | '/configuracoes'
     | '/contas'
     | '/investimentos'
     | '/lancamentos'
@@ -116,6 +138,8 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/categorias'
+    | '/conexoes'
+    | '/configuracoes'
     | '/contas'
     | '/investimentos'
     | '/lancamentos'
@@ -127,6 +151,8 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthRoute: typeof AuthRoute
   CategoriasRoute: typeof CategoriasRoute
+  ConexoesRoute: typeof ConexoesRoute
+  ConfiguracoesRoute: typeof ConfiguracoesRoute
   ContasRoute: typeof ContasRoute
   InvestimentosRoute: typeof InvestimentosRoute
   LancamentosRoute: typeof LancamentosRoute
@@ -155,6 +181,20 @@ declare module '@tanstack/react-router' {
       path: '/categorias'
       fullPath: '/categorias'
       preLoaderRoute: typeof CategoriasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/conexoes': {
+      id: '/conexoes'
+      path: '/conexoes'
+      fullPath: '/conexoes'
+      preLoaderRoute: typeof ConexoesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/configuracoes': {
+      id: '/configuracoes'
+      path: '/configuracoes'
+      fullPath: '/configuracoes'
+      preLoaderRoute: typeof ConfiguracoesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contas': {
@@ -199,6 +239,8 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthRoute: AuthRoute,
   CategoriasRoute: CategoriasRoute,
+  ConexoesRoute: ConexoesRoute,
+  ConfiguracoesRoute: ConfiguracoesRoute,
   ContasRoute: ContasRoute,
   InvestimentosRoute: InvestimentosRoute,
   LancamentosRoute: LancamentosRoute,

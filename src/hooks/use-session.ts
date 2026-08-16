@@ -37,5 +37,5 @@ export function useRequireAuth() {
     if (!loading && !session) void navigate({ to: "/auth", replace: true });
   }, [loading, session, navigate]);
 
-  return { session, loading, userId };
+  return { session, loading, userId, email: session?.user.email ?? null };
 }
