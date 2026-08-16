@@ -66,7 +66,7 @@ function CategoriasPage() {
   const [form, setForm] = useState<CategoryInput>(empty());
 
   const submit = async () => {
-    if (!form.name.trim()) return toast.error("Informe o nome da categoria.");
+    if (!form.name.trim()) { toast.error("Informe o nome da categoria."); return; }
     try {
       await save.mutateAsync({ ...(editing ? { id: editing.id } : {}), values: form });
       toast.success(editing ? "Categoria atualizada." : "Categoria criada.");
