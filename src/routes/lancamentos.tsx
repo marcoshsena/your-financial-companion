@@ -115,8 +115,8 @@ function LancamentosPage() {
   };
 
   const submit = async () => {
-    if (!form.description.trim()) return toast.error("Informe a descrição.");
-    if (!(form.amount > 0)) return toast.error("Informe um valor maior que zero.");
+    if (!form.description.trim()) { toast.error("Informe a descrição."); return; }
+    if (!(form.amount > 0)) { toast.error("Informe um valor maior que zero."); return; }
     try {
       await save.mutateAsync({ ...(editing ? { id: editing.id } : {}), values: form });
       toast.success(editing ? "Lançamento atualizado." : "Lançamento criado.");
