@@ -11,6 +11,8 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as CategoriasRouteImport } from './routes/categorias'
+import { Route as ContasRouteImport } from './routes/contas'
 import { Route as LancamentosRouteImport } from './routes/lancamentos'
 import { Route as PainelRouteImport } from './routes/painel'
 import { Route as AuthCallbackRouteImport } from './routes/auth_.callback'
@@ -23,6 +25,16 @@ const IndexRoute = IndexRouteImport.update({
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
   path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CategoriasRoute = CategoriasRouteImport.update({
+  id: '/categorias',
+  path: '/categorias',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContasRoute = ContasRouteImport.update({
+  id: '/contas',
+  path: '/contas',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LancamentosRoute = LancamentosRouteImport.update({
@@ -44,6 +56,8 @@ const AuthCallbackRoute = AuthCallbackRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/categorias': typeof CategoriasRoute
+  '/contas': typeof ContasRoute
   '/lancamentos': typeof LancamentosRoute
   '/painel': typeof PainelRoute
   '/auth/callback': typeof AuthCallbackRoute
@@ -51,6 +65,8 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/categorias': typeof CategoriasRoute
+  '/contas': typeof ContasRoute
   '/lancamentos': typeof LancamentosRoute
   '/painel': typeof PainelRoute
   '/auth/callback': typeof AuthCallbackRoute
@@ -59,22 +75,47 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/categorias': typeof CategoriasRoute
+  '/contas': typeof ContasRoute
   '/lancamentos': typeof LancamentosRoute
   '/painel': typeof PainelRoute
   '/auth_/callback': typeof AuthCallbackRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/lancamentos' | '/painel' | '/auth/callback'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/categorias'
+    | '/contas'
+    | '/lancamentos'
+    | '/painel'
+    | '/auth/callback'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/lancamentos' | '/painel' | '/auth/callback'
+  to:
+    | '/'
+    | '/auth'
+    | '/categorias'
+    | '/contas'
+    | '/lancamentos'
+    | '/painel'
+    | '/auth/callback'
   id:
-    '__root__' | '/' | '/auth' | '/lancamentos' | '/painel' | '/auth_/callback'
+    | '__root__'
+    | '/'
+    | '/auth'
+    | '/categorias'
+    | '/contas'
+    | '/lancamentos'
+    | '/painel'
+    | '/auth_/callback'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthRoute: typeof AuthRoute
+  CategoriasRoute: typeof CategoriasRoute
+  ContasRoute: typeof ContasRoute
   LancamentosRoute: typeof LancamentosRoute
   PainelRoute: typeof PainelRoute
   AuthCallbackRoute: typeof AuthCallbackRoute
@@ -94,6 +135,20 @@ declare module '@tanstack/react-router' {
       path: '/auth'
       fullPath: '/auth'
       preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/categorias': {
+      id: '/categorias'
+      path: '/categorias'
+      fullPath: '/categorias'
+      preLoaderRoute: typeof CategoriasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contas': {
+      id: '/contas'
+      path: '/contas'
+      fullPath: '/contas'
+      preLoaderRoute: typeof ContasRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/lancamentos': {
@@ -123,6 +178,8 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthRoute: AuthRoute,
+  CategoriasRoute: CategoriasRoute,
+  ContasRoute: ContasRoute,
   LancamentosRoute: LancamentosRoute,
   PainelRoute: PainelRoute,
   AuthCallbackRoute: AuthCallbackRoute,
