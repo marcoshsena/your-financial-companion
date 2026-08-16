@@ -241,7 +241,7 @@ function InvestimentosPage() {
           value={brl(totalDividends)}
           tone="positive"
           loading={isLoading}
-          hint={usdBrl > 0 ? `USD/BRL ${num(usdBrl, 4)}` : undefined}
+          {...(usdBrl > 0 ? { hint: `USD/BRL ${num(usdBrl, 4)}` } : {})}
         />
       </div>
 
