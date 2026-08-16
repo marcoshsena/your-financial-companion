@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as CategoriasRouteImport } from './routes/categorias'
 import { Route as ContasRouteImport } from './routes/contas'
+import { Route as InvestimentosRouteImport } from './routes/investimentos'
 import { Route as LancamentosRouteImport } from './routes/lancamentos'
 import { Route as PainelRouteImport } from './routes/painel'
 import { Route as AuthCallbackRouteImport } from './routes/auth_.callback'
@@ -37,6 +38,11 @@ const ContasRoute = ContasRouteImport.update({
   path: '/contas',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InvestimentosRoute = InvestimentosRouteImport.update({
+  id: '/investimentos',
+  path: '/investimentos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LancamentosRoute = LancamentosRouteImport.update({
   id: '/lancamentos',
   path: '/lancamentos',
@@ -58,6 +64,7 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/categorias': typeof CategoriasRoute
   '/contas': typeof ContasRoute
+  '/investimentos': typeof InvestimentosRoute
   '/lancamentos': typeof LancamentosRoute
   '/painel': typeof PainelRoute
   '/auth/callback': typeof AuthCallbackRoute
@@ -67,6 +74,7 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/categorias': typeof CategoriasRoute
   '/contas': typeof ContasRoute
+  '/investimentos': typeof InvestimentosRoute
   '/lancamentos': typeof LancamentosRoute
   '/painel': typeof PainelRoute
   '/auth/callback': typeof AuthCallbackRoute
@@ -77,6 +85,7 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/categorias': typeof CategoriasRoute
   '/contas': typeof ContasRoute
+  '/investimentos': typeof InvestimentosRoute
   '/lancamentos': typeof LancamentosRoute
   '/painel': typeof PainelRoute
   '/auth_/callback': typeof AuthCallbackRoute
@@ -88,6 +97,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/categorias'
     | '/contas'
+    | '/investimentos'
     | '/lancamentos'
     | '/painel'
     | '/auth/callback'
@@ -97,6 +107,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/categorias'
     | '/contas'
+    | '/investimentos'
     | '/lancamentos'
     | '/painel'
     | '/auth/callback'
@@ -106,6 +117,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/categorias'
     | '/contas'
+    | '/investimentos'
     | '/lancamentos'
     | '/painel'
     | '/auth_/callback'
@@ -116,6 +128,7 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   CategoriasRoute: typeof CategoriasRoute
   ContasRoute: typeof ContasRoute
+  InvestimentosRoute: typeof InvestimentosRoute
   LancamentosRoute: typeof LancamentosRoute
   PainelRoute: typeof PainelRoute
   AuthCallbackRoute: typeof AuthCallbackRoute
@@ -151,6 +164,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContasRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/investimentos': {
+      id: '/investimentos'
+      path: '/investimentos'
+      fullPath: '/investimentos'
+      preLoaderRoute: typeof InvestimentosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/lancamentos': {
       id: '/lancamentos'
       path: '/lancamentos'
@@ -180,6 +200,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   CategoriasRoute: CategoriasRoute,
   ContasRoute: ContasRoute,
+  InvestimentosRoute: InvestimentosRoute,
   LancamentosRoute: LancamentosRoute,
   PainelRoute: PainelRoute,
   AuthCallbackRoute: AuthCallbackRoute,
